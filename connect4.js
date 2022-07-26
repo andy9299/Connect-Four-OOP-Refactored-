@@ -75,8 +75,6 @@ function placeInTable(y, x) {
   (currPlayer === 1) ? piece.classList.add("p1") : piece.classList.add("p2");
   const placement = document.getElementById(`${y}-${x}`);
   placement.append(piece);
-
-
 }
 
 /** endGame: announce game end and create a reset button*/
@@ -91,7 +89,6 @@ function endGame(msg) {
   document.body.appendChild(resetBtn);
   const htmlBoard = document.querySelector('#board');;
   htmlBoard.classList.toggle('finished');
-
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -119,8 +116,6 @@ function handleClick(evt) {
 
   // switch players 
   currPlayer = currPlayer === 1 ? 2 : 1;
-
-
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -141,8 +136,8 @@ function checkForWin() {
     );
   }
 
-  // for every cell check if theres a winner going horizontal, vertical,
-  // or both diagonals. it will cover everything since it goes through every cell
+  // for every cell check if theres a winner going horizontal (right), vertical (down),
+  // or either diagonals (downwards left/right). it will cover everything since it goes through every cell
   for (var y = 0; y < HEIGHT; y++) {
     for (var x = 0; x < WIDTH; x++) {
       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
