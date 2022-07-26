@@ -12,13 +12,14 @@
     align-items: center;
     justify-content: center;
     height: 80vh;
-    position: relative;
+
   }
 
   #resetBtn {
-    position: absolute;
+    margin: 0 auto;
+    display: block;
+    height: 50px
   }
-
 
 
   /* pieces are div within game table cells: draw as colored circles */
@@ -39,6 +40,9 @@
     background-color: blue;
   }
 
+  .finished {
+    pointer-events: none;
+  }
 
   /* column-top is table row of clickable areas for each column */
 

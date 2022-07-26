@@ -80,7 +80,9 @@ function endGame(msg) {
   resetBtn.setAttribute("id", "resetBtn");
   resetBtn.addEventListener("click", resetGame);
   const game = document.querySelector('#game');
-  game.appendChild(resetBtn);
+  document.body.appendChild(resetBtn);
+  const htmlBoard = document.querySelector('#board');;
+  htmlBoard.classList.toggle('finished');
 
 }
 
@@ -158,6 +160,7 @@ function resetGame() {
   resetBtn.remove();
   makeBoard();
   makeHtmlBoard();
+  htmlBoard.classList.toggle('finished');
 }
 
 makeBoard();
