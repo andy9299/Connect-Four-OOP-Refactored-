@@ -1,3 +1,7 @@
+  body {
+    background-color: #121212;
+  }
+
   /* game board table */
 
   #board td {
@@ -15,13 +19,6 @@
 
   }
 
-  #resetBtn {
-    margin: 0 auto;
-    display: block;
-    height: 50px
-  }
-
-
   /* pieces are div within game table cells: draw as colored circles */
 
   .piece {
@@ -33,11 +30,11 @@
   }
 
   .p1 {
-    background-color: red;
+    background-color: #BB86FC;
   }
 
   .p2 {
-    background-color: blue;
+    background-color: #00C2AE;
   }
 
   .finished {
@@ -51,5 +48,12 @@
   }
 
   #column-top td:hover {
-    background-color: gold;
+    background-color: darkgoldenrod;
+  }
+
+  /* end of game reset button*/
+  #resetBtn {
+    margin: 0 auto;
+    display: block;
+    height: 50px
   }

@@ -64,6 +64,12 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
+  if (!(typeof y === typeof x)) {
+    return;
+  }
+  //put piece in the array board
+  board[y][x] = currPlayer;
+  //put piece in the html board
   const piece = document.createElement("div");
   piece.classList.add("piece");
   (currPlayer === 1) ? piece.classList.add("p1") : piece.classList.add("p2");
@@ -100,7 +106,7 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   placeInTable(y, x);
-  board[y][x] = currPlayer;
+
 
   // check for win
   if (checkForWin()) {
