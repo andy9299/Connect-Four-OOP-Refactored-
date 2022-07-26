@@ -30,7 +30,9 @@ function makeHtmlBoard() {
   // where a user can click to trigger the handleClick fn
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
+
+  // mousedown to prevent clicking on 1 col and dragging and mouseup on another
+  top.addEventListener("mousedown", handleClick);
 
   for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
@@ -64,17 +66,17 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  if (!(typeof y === typeof x)) {
-    return;
-  }
   //put piece in the array board
   board[y][x] = currPlayer;
+
   //put piece in the html board
   const piece = document.createElement("div");
   piece.classList.add("piece");
   (currPlayer === 1) ? piece.classList.add("p1") : piece.classList.add("p2");
   const placement = document.getElementById(`${y}-${x}`);
   placement.append(piece);
+
+
 }
 
 /** endGame: announce game end and create a reset button*/
@@ -100,13 +102,12 @@ function handleClick(evt) {
 
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
-  if (y === null) {
+  if (y === undefined) {
     return;
   }
 
   // place piece in board and add to HTML table
   placeInTable(y, x);
-
 
   // check for win
   if (checkForWin()) {
@@ -116,9 +117,10 @@ function handleClick(evt) {
   // check for tie
   if (board.every(row => row.every(cell => cell))) { return endGame("Tie Game!"); }
 
-
-  // switch players
+  // switch players 
   currPlayer = currPlayer === 1 ? 2 : 1;
+
+
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -141,14 +143,12 @@ function checkForWin() {
 
   // for every cell check if theres a winner going horizontal, vertical,
   // or both diagonals. it will cover everything since it goes through every cell
-
   for (var y = 0; y < HEIGHT; y++) {
     for (var x = 0; x < WIDTH; x++) {
       const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
       const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
       const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
