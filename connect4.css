@@ -27,18 +27,6 @@
     border-radius: 50%;
   }
 
-  .p1 {
-    background-color: #BB86FC;
-  }
-
-  .p2 {
-    background-color: #00C2AE;
-  }
-
-  .finished {
-    pointer-events: none;
-  }
-
   /* column-top is table row of clickable areas for each column */
 
   #column-top td {
@@ -47,11 +35,4 @@
 
   #column-top td:hover {
     background-color: darkgoldenrod;
-  }
-
-  /* end of game reset button*/
-  #resetBtn {
-    margin: 0 auto;
-    display: block;
-    height: 50px
   }

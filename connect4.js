@@ -16,7 +16,6 @@ class Game {
   constructor(playerArray, width = 7, height = 6) {
     this.width = width;
     this.height = height;
-    this.board = []; // array of rows, each row is array of cells  (board[y][x])
     this.players = playerArray;
     this.currPlayer = this.players[0]; // active player starting with first player
     this.makeBoard();
@@ -25,13 +24,15 @@ class Game {
   /** makeBoard: create in-JS board structure:
   board = array of rows, each row is array of cells  (board[y][x]) */
   makeBoard() {
+    this.board = []; // array of rows, each row is array of cells  (board[y][x])
     for (let i = 0; i < this.height; i++) {
       this.board.push(Array.from({ length: this.width }));
     }
   }
   /** makeHtmlBoard: make HTML table and row of column tops. */
   makeHtmlBoard() {
-    const htmlBoard = document.querySelector('#board');
+    const htmlBoard = document.getElementById('board');
+    htmlBoard.innerHTML = '';
 
     // creating and labeling the top row of cells
     // where a user can click to trigger the handleClick fn
@@ -91,8 +92,8 @@ class Game {
 
   endGame(msg) {
     alert(msg);
-    const htmlBoard = document.querySelector('#board');;
-    htmlBoard.classList.toggle('finished');
+    const top = document.getElementById('column-top');
+    top.removeEventListener("mousedown", this.handleClickBind);
   }
 
   /** handleClick: handle click of column top to play piece */
@@ -149,19 +150,6 @@ class Game {
       }
     }
   }
-
-  // resets the game by remaking the board/htmlboard and removing the reset button
-
-  /*resetGame() {
-    this.board = [];
-    const htmlBoard = document.querySelector('#board');
-    htmlBoard.innerHTML = "";
-    const resetBtn = document.querySelector('#resetBtn');
-    resetBtn.remove();
-    this.makeBoard();
-    this.makeHtmlBoard();
-    htmlBoard.classList.toggle('finished');
-  } */
 }
 
 
