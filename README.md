@@ -1,4 +1,5 @@
-# Further Study
+# Springboard Project
+## Further Study
 If you have more time and would like more tasks, here are some things to play with:
 
 1. Make it so that you can have more than two players
